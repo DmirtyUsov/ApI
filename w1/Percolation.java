@@ -30,6 +30,13 @@ public class Percolation {
         }
     }
 
+    private void validateIndex(int row, int col)
+    {
+        if (row < 1 || row > sizeN || col < 1 || col > sizeN) {
+            throw new IllegalArgumentException("row or col is outside its prescribed range");
+        }
+    }
+
     private int rowcol2id(int row, int col)
     {
         int id = -1; // row or col is outside its prescribed range
@@ -47,19 +54,14 @@ public class Percolation {
     // is the site (row, col) open?
     public boolean isOpen(int row, int col)
     {
-        if (row < 1 || row > sizeN || col < 1 || col > sizeN) {
-            throw new IllegalArgumentException("row or col is outside its prescribed range");
-        }
+        validateIndex(row, col);
         return sites[rowcol2id(row, col)];
     }
 
     // opens the site (row, col) if it is not open already
     public void open(int row, int col)
     {
-        if (row < 1 || row > sizeN || col < 1 || col > sizeN)
-        {
-            throw new IllegalArgumentException("row or col is outside its prescribed range");
-        }
+        validateIndex(row, col);
 
         if (!isOpen(row, col))
         {
@@ -71,6 +73,7 @@ public class Percolation {
             
             // connect to neighbors (left, right, up, down) open sites
             int[][] toCheck = {{row, col-1}, {row, col+1}, {row-1, col}, {row+1, col}};
+
             for (int i = 0; i < toCheck.length; i++)
             {
                 q = rowcol2id(toCheck[i][0], toCheck[i][1]);
@@ -112,9 +115,8 @@ public class Percolation {
         // A full site is an open site that can be connected
         // to an open site in the top row via a chain of neighboring
         // (left, right, up, down) open sites.
-        if (row < 1 || row > sizeN || col < 1 || col > sizeN) {
-            throw new IllegalArgumentException("row or col is outside its prescribed range");
-        }
+        validateIndex(row, col);
+        
         boolean result = false;
         if (isOpen(row, col))
         {
