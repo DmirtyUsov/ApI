@@ -3,7 +3,7 @@ import edu.princeton.cs.algs4.WeightedQuickUnionUF;
 
 public class Percolation {
     
-    private boolean[] sites;
+    private byte[] sites;
     private final WeightedQuickUnionUF ids;
     private final int sizeN;
     private int numberOfOpenSites;
@@ -18,16 +18,10 @@ public class Percolation {
         sizeN = n;
         numberOfOpenSites = 0;
         int size = n*n+2; // n-by-n + virtual top and bottom
-        sites = new boolean[size];
+        sites = new byte[size]; // all sites initially blocked - 0
         ids = new WeightedQuickUnionUF(size);
         topVirtual = 0;
         bottomVirtual = size-1; 
-        
-        // all sites initially blocked - false
-        for (int i = 1; i < bottomVirtual; i++)
-        {
-            sites[i] = false;
-        }
     }
 
     private void validateIndex(int row, int col)
@@ -55,7 +49,7 @@ public class Percolation {
     public boolean isOpen(int row, int col)
     {
         validateIndex(row, col);
-        return sites[rowcol2id(row, col)];
+        return 1 == sites[rowcol2id(row, col)];
     }
 
     // opens the site (row, col) if it is not open already
@@ -68,7 +62,7 @@ public class Percolation {
             // open site
             int p = rowcol2id(row, col);
             int q = -1;
-            sites[p] = true;
+            sites[p] = 1;
             numberOfOpenSites++;
             
             // connect to neighbors (left, right, up, down) open sites
@@ -116,7 +110,7 @@ public class Percolation {
         // to an open site in the top row via a chain of neighboring
         // (left, right, up, down) open sites.
         validateIndex(row, col);
-        
+
         boolean result = false;
         if (isOpen(row, col))
         {
