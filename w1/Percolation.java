@@ -1,3 +1,4 @@
+// TODO backwash problem
 import edu.princeton.cs.algs4.WeightedQuickUnionUF;
 
 public class Percolation {
@@ -27,18 +28,6 @@ public class Percolation {
         {
             sites[i] = false;
         }
-        // union first row (top) with virtual top
-        for (int q = 1; q <= sizeN; q++)
-        {
-            ids.union(topVirtual, q);
-        }
-
-        // union bottom row with virtual bottom
-        
-        for (int p = bottomVirtual-sizeN; p < bottomVirtual; p++)
-        {
-            ids.union(p, bottomVirtual);
-        }
     }
 
     private int rowcol2id(int row, int col)
@@ -51,7 +40,6 @@ public class Percolation {
         else
         {
             id = row*sizeN-(sizeN-col);
-            // System.out.println("For (" + row +", "+col + ") id="+ id);
         }
         return id;
     }
@@ -94,7 +82,20 @@ public class Percolation {
                     }
 
                 }
-
+                else
+                {   // check for virtual
+                    if (toCheck[i][1] > 0 && toCheck[i][1] <= sizeN) // col in range
+                    {
+                        if (toCheck[i][0] == topVirtual) // topVirtual
+                        {
+                            ids.union(topVirtual, p);
+                        }
+                        if (toCheck[i][0] == sizeN+1) // bottomVirtual
+                        {
+                            ids.union(p, bottomVirtual);
+                        }
+                    }
+                }
             }
         }
     }
