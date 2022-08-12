@@ -25,6 +25,12 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
         return itemsInQueue==0;
     }
 
+    // return the number of items on the randomized queue
+    public int size()
+    {
+        return itemsInQueue;
+    }
+
     private void resize(int capacity)
     {
         Item[] copy = (Item[]) new Object[capacity];
