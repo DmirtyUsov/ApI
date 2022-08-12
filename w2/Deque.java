@@ -1,4 +1,3 @@
-import java.lang.Iterable;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 import edu.princeton.cs.algs4.StdIn;
@@ -49,7 +48,15 @@ public class Deque<Item> implements Iterable<Item>
         first = new Node();
         first.item = item;
         first.next = oldFirst;
-        oldFirst.prev = first;
+        first.prev = null;
+        if (isEmpty())
+        {
+            last = first;
+        }
+        else
+        {
+            oldFirst.prev = first;
+        }
         size++;
     }
 
@@ -149,7 +156,7 @@ public class Deque<Item> implements Iterable<Item>
     // unit testing
     public static void main(String[] args)
     {
-        Deque<String> deque = new Deque<String>();
+        Deque<String> deque = new Deque<>();
         while (!StdIn.isEmpty())
         {
             String s = StdIn.readString();
