@@ -4,7 +4,8 @@ import java.util.NoSuchElementException;
 import edu.princeton.cs.algs4.StdIn;
 import edu.princeton.cs.algs4.StdOut;
 
-public class Deque<Item> implements Iterable<Item>{
+public class Deque<Item> implements Iterable<Item>
+{
     
     private class Node
     {
@@ -17,7 +18,8 @@ public class Deque<Item> implements Iterable<Item>{
     private int size; 
 
     // construct an empty deque
-    public Deque(){
+    public Deque()
+    {
         first = null;
         last = null;
         size = 0;

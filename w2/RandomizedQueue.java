@@ -1,4 +1,3 @@
-import java.lang.Iterable;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 import edu.princeton.cs.algs4.StdRandom;
@@ -22,7 +21,7 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
     // is the randomized queue empty?
     public boolean isEmpty()
     {
-        return itemsInQueue==0;
+        return itemsInQueue == 0;
     }
 
     // return the number of items on the randomized queue
@@ -68,7 +67,7 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
     // remove and return a random item
     public Item dequeue()
     {
-        if(itemsInQueue == 0)
+        if (itemsInQueue == 0)
         {
             throw new NoSuchElementException("queue is empty");
         }
@@ -95,7 +94,7 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
     // return a random item (but do not remove it)
     public Item sample()
     {
-        if(itemsInQueue == 0)
+        if (itemsInQueue == 0)
         {
             throw new NoSuchElementException("queue is empty");
         }
@@ -120,9 +119,9 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
     private class ArrayIterator implements Iterator<Item>
     {
         private int currentTail;
-        private int itemsForIterator;
-        private Item[] queueIter;
-        
+        private final int itemsForIterator;
+        private final Item[] queueIter;
+
         public ArrayIterator()
         {
             itemsForIterator = itemsInQueue;
