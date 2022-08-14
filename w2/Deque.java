@@ -111,13 +111,16 @@ public class Deque<Item> implements Iterable<Item>
             throw new NoSuchElementException("Deque is empty");
         }
         Item item = last.item;
-        last.prev.next = null;
-        last = last.prev;
-        size--;
-        if (isEmpty())
+        if (last != first)
+        {
+            last.prev.next = null;
+        }
+        else
         {
             first = null;
         }
+        last = last.prev;
+        size--;
         return item;
     }
     
