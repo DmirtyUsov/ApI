@@ -9,4 +9,12 @@ java-algs4 RandomizedQueue < animals8.txt
 javac -cp hello/.lift/algs4.jar: w2/RandomizedQueue.java w2/Permutation.java
 
 java-algs4 MergeSort < test.txt
+
+javac -cp hello/.lift/algs4.jar: w3/BruteCollinearPoints.java w3/Point.java w3/LineSegment.java
+
+java-algs4 BruteCollinearPoints input8.txt
+
+javac -cp hello/.lift/algs4.jar: w3/FastCollinearPoints.java w3/Point.java w3/LineSegment.java
+
+java-algs4 FastCollinearPoints input8.txt
 ```
