@@ -73,17 +73,15 @@ public class Solver
 
         while (!node.board.isGoal())
         {
-            move++;
-
             for (Board neighbors : node.board.neighbors())
             {
                 if (node.prevSearchNode == null)
                 {
-                    queue.insert(new SearchNode(neighbors, move, node));
+                    queue.insert(new SearchNode(neighbors, 1, node));
                 }
                 else if (!neighbors.equals(node.prevSearchNode.board))
                 {
-                    queue.insert(new SearchNode(neighbors, move, node));
+                    queue.insert(new SearchNode(neighbors, node.moves+1, node));
                 }
             }
             node = queue.delMin();
@@ -93,11 +91,11 @@ public class Solver
             {
                 if (nodeTwin.prevSearchNode == null)
                 {
-                    queueTwin.insert(new SearchNode(neighborsTwin, move, nodeTwin));
+                    queueTwin.insert(new SearchNode(neighborsTwin, 1, nodeTwin));
                 }
                 else if (!neighborsTwin.equals(nodeTwin.prevSearchNode.board))
                 {
-                    queueTwin.insert(new SearchNode(neighborsTwin, move, nodeTwin));
+                    queueTwin.insert(new SearchNode(neighborsTwin, node.moves+1, nodeTwin));
                 }
             }
             nodeTwin = queueTwin.delMin();
