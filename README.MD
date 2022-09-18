@@ -18,3 +18,11 @@ javac -cp hello/.lift/algs4.jar: w3/FastCollinearPoints.java w3/Point.java w3/Li
 
 java-algs4 FastCollinearPoints input8.txt
 ```
+https://coursera.cs.princeton.edu/algs4/assignments/8puzzle/specification.php
+
+```
+javac -cp hello/.lift/algs4.jar: w4/Board.java
+
+javac -cp hello/.lift/algs4.jar: w4/Board.java w4/Solver.java
+
+```
